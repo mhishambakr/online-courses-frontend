@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- css -->
+    <link rel="stylesheet" href="CSS/style.css">
+
+    <!-- icons -->
+    <script src="https://kit.fontawesome.com/3feefbb3f6.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">Admin Dashboard</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="row">
+        <div class="col-lg-2">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Active</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-lg-10">
+            <div class="container jumbotron text-center font-weight-bold" style="background-color: #5bc0de;">
+                <div class="row">
+                    <div class="page-header">
+                        <h1>Admin Dashboard</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 jumbotron border border-primary" id="userView2" ng-app="userApp"
+                        ng-controller="userCtrl" style="background-color: rgb(238,130,238);">
+                        <i class="fas fa-user-shield"></i><br>
+                        <select ng-model="selectedUser" ng-options="user.name for user in users">
+                        </select>
+                        <div ng-if="selectedUser">
+                            <div class="displayUser">
+                                <p>Name: {{selectedUser.name}}</p>
+                                <p>Email: {{selectedUser.email}}</p>
+                                <p>Claimed points: {{selectedUser.claimed_points}}</p>
+                                <p>Unclaimed points: {{selectedUser.unclaimed_points}}</p>
+                                <p>Name: {{selectedUser.name}}</p>
+                                <div ng-if="selectedUser.is_disabled">
+                                    <button class="btn btn-success"
+                                        role="button"><i class="fas fa-user"></i> Enable</button>
+                                </div>
+                                <div ng-if="!selectedUser.is_disabled">
+                                    <button class="btn btn-success"
+                                        role="button"><i class="fas fa-user-shield"></i> Make admin</button>
+                                    <button class="btn btn-danger" role="button"><i
+                                        class="fas fa-user-slash"></i> Disable</button>
+                                </div>
+                            </div>
+                        </div>    
+                        <p></p>
+
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row" id="courseView1" ng-app="courseApp" ng-controller="courseCtrl">
+                            <div class="col-lg-6 jumbotron border border-dark"><i
+                                    class="fas fa-graduation-cap"></i><br>Number of courses: {{courses.length}}</div>
+                            <div class="col-lg-6 jumbotron border border-dark"><a href="courses.html"><i
+                                        class="fas fa-graduation-cap"></i><br>View Courses</a></div>
+                        </div>
+                        <div class="row" id="userView1" ng-app="userApp" ng-controller="userCtrl">
+                            <div class="col-lg-6 jumbotron border border-primary" style="background-color: #6fa6d6;"><i
+                                    class="fas fa-user-graduate"></i><br>Total users: {{users.length}}</div>
+                            <div class="col-lg-6 jumbotron border border-danger" style="background-color: #d37e7b;"><i
+                                    class="fas fa-user-slash"></i><br>Disabled user: {{disabledUsers}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="adminView1" ng-app="adminApp" ng-controller="adminCtrl">
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <div class="col-lg-6 jumbotron border border-success" style="background-color: #90c090;"><i
+                                    class="fas fa-eye"></i><br>Total views: {{totalViews}}</div>
+                            <div class="col-lg-6 jumbotron border border-success" style="background-color: #90c090;"><i
+                                    class="far fa-eye"></i><br>Current views: {{currentViews}}</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+    <script src="js/course.js"></script>
+    <script src="js/user.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+
+</html>
